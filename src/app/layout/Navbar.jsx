@@ -20,7 +20,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 const Navbar = () => {
   const pages = ["Usuarios", "Estacionamientos", "Reportes"];
-  const [auth, setAuth] = React.useState(true);
+  const [auth,] = React.useState(true);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const dispatch = useDispatch();

@@ -19,7 +19,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../account/userSlice";
-import { selectId, selectPriority } from "../account/userSlice";
+import { selectPriority } from "../account/userSlice";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import logo from "../auth/assets/icon.png";
