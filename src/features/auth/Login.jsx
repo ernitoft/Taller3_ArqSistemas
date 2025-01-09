@@ -47,7 +47,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const id = useSelector(selectId);
   const priority = useSelector(selectPriority);
 
   const handleClickShowPassword = () => {
