@@ -56,6 +56,9 @@ const Users = () => {
     priority: "",
   });
 
+  const [setHelperPriority] = React.useState("");
+  const [setCurrentUser] = React.useState(null);
+
   const getUsers = async () => {
     agent.GetUsers.getUsers().then((response) => {
       setUsers(response.users);
