@@ -4,18 +4,15 @@ import {
   screen,
   fireEvent,
   waitFor,
-  act,
 } from "@testing-library/react";
-import Users from "../../features/account/Users";
 import { Provider } from "react-redux";
 import { store } from "../../app/store/store";
-import { RouterProvider, BrowserRouter } from "react-router-dom";
-import { router, AppRouter } from "../../app/router/Routes";
+import { RouterProvider } from "react-router-dom";
+import { router } from "../../app/router/Routes";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "../../app/store/store";
 import userEvent from "@testing-library/user-event";
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const listName = [
   "Maria",
@@ -42,23 +39,18 @@ const listName = [
   "Emmanuel",
 ];
 const newName = listName[Math.floor(Math.random() * listName.length)];
-const emailToFind = "usuario1@example.com";
-const editId = "editar-2";
-const id = "id-2";
-const confirmId = "confirm-2";
 
 async function loginUser() {
   const emailInput = screen.getByLabelText(/correo electrónico/i);
   const passwordInput = screen.getByLabelText(/contraseña/i);
   const submitButton = screen.getByRole("button", { name: /iniciar sesión/i });
 
-  act(() => {
-    userEvent.type(emailInput, "admin@parknmove.com");
-    userEvent.type(passwordInput, "password");
-  });
+  userEvent.type(emailInput, "admin@parknmove.com");
+  userEvent.type(passwordInput, "password");
 
   fireEvent.click(submitButton);
 }
+
 
 describe("Users", () => {
   test("After logging, should find users table", async () => {

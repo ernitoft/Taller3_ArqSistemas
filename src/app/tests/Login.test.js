@@ -4,10 +4,7 @@ import {
   screen,
   fireEvent,
   waitFor,
-  act,
 } from "@testing-library/react";
-import toast from "react-toastify";
-import Login from "../../features/auth/Login";
 import { Provider } from "react-redux";
 import { store } from "../../app/store/store";
 import { RouterProvider } from "react-router-dom";
@@ -82,25 +79,24 @@ describe("Login", () => {
         </PersistGate>
       </Provider>
     );
-
+  
     const emailInput = screen.getByLabelText(/correo electrónico/i);
     const passwordInput = screen.getByLabelText(/contraseña/i);
     const submitButton = screen.getByRole("button", {
       name: /iniciar sesión/i,
     });
-
-    act(() => {
-      userEvent.type(emailInput, "invalidemail");
-      userEvent.type(passwordInput, "123456");
-    });
-
+  
+    userEvent.type(emailInput, "invalidemail");
+    userEvent.type(passwordInput, "123456");
+  
     fireEvent.click(submitButton);
-
+  
     await waitFor(() => {
       const toastElement = screen.getByText(/El email no es válido./i);
       expect(toastElement).toBeInTheDocument();
     });
   });
+  
 
   test("enter valid email and password but the user does not exist", async () => {
     render(
@@ -112,20 +108,18 @@ describe("Login", () => {
         </PersistGate>
       </Provider>
     );
-
+  
     const emailInput = screen.getByLabelText(/correo electrónico/i);
     const passwordInput = screen.getByLabelText(/contraseña/i);
     const submitButton = screen.getByRole("button", {
       name: /iniciar sesión/i,
     });
-
-    act(() => {
-      userEvent.type(emailInput, "vicente.alarcon@gmail.com");
-      userEvent.type(passwordInput, "123456asdas");
-    });
-
+  
+    userEvent.type(emailInput, "vicente.alarcon@gmail.com");
+    userEvent.type(passwordInput, "123456asdas");
+  
     fireEvent.click(submitButton);
-
+  
     await waitFor(() => {
       const toastElement = screen.getByText(
         /Usuario o contraseña incorrectos./i
@@ -133,6 +127,7 @@ describe("Login", () => {
       expect(toastElement).toBeInTheDocument();
     });
   });
+  
 
   test("enter valid email and password and the user exists", async () => {
     render(
@@ -144,22 +139,21 @@ describe("Login", () => {
         </PersistGate>
       </Provider>
     );
-
+  
     const emailInput = screen.getByLabelText(/correo electrónico/i);
     const passwordInput = screen.getByLabelText(/contraseña/i);
     const submitButton = screen.getByRole("button", {
       name: /iniciar sesión/i,
     });
-
-    act(() => {
-      userEvent.type(emailInput, "admin@parknmove.com");
-      userEvent.type(passwordInput, "password");
-    });
-
+  
+    userEvent.type(emailInput, "admin@parknmove.com");
+    userEvent.type(passwordInput, "password");
+  
     fireEvent.click(submitButton);
-
+  
     await waitFor(() => {
       expect(window.location.pathname).toBe("/main/users");
     });
   });
+  
 });

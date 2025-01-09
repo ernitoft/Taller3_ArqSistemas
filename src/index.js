@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
-import { RouterProvider, BrowserRouter } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { router } from "./app/router/Routes";
 import { Provider } from "react-redux";
 import { store, persistor } from "./app/store/store";
